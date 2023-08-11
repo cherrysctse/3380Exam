@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 
-const uri = "mongodb://127.0.0.1:27017/BookList"
+const uri = "mongodb+srv://cherry703:12345@cluster0.n2drmzh.mongodb.net/BookList"
 
 mongoose.connect(uri);
 mongoose.set()
