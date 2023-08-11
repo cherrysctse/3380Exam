@@ -4,22 +4,21 @@ import axios from "axios";
 
 const Books = (props) => {
     return (
-        <div className="list">
-            <div className="card-container">
-                <img
-                    src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d"
-                    alt="Books"
-                    height="200"
-                />
-                <div className="desc">
-                    <h2><a href="/show-book/123id">{props.book.title}</a></h2>
-                    <h3>{props.book.author}</h3>
-                    <p>{props.book.description}</p>
-                </div>
-                <button className="btn btn-secondary" onClick={() => { props.deleteProduct(props.book._id) }}>
-                    X
-                </button>
+
+        <div className="card-container">
+            <img
+                src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d"
+                alt="Books"
+                height="200"
+            />
+            <div className="desc">
+                <h2><a href="/show-book/123id">{props.book.title}</a></h2>
+                <h3>{props.book.author}</h3>
+                <p>{props.book.description}</p>
             </div>
+            <button className="btn btn-secondary" onClick={() => { props.deleteProduct(props.book._id) }}>
+                X
+            </button>
         </div>
     )
 }
@@ -28,7 +27,7 @@ const FrontPage = () => {
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/book/`)
+        axios.get(`https://three380exambackend.onrender.com/book/`)
             .then(response => { setBooks(response.data) })
             .catch(err => console.log(err))
     }, []);
@@ -38,7 +37,7 @@ const FrontPage = () => {
     }
 
     const deleteProduct = (id) => {
-        axios.delete(`http://localhost:5000/book/delete/${id}`)
+        axios.delete(`https://three380exambackend.onrender.com/book/delete/${id}`)
             .then(response => {
                 console.log(response.data);
                 setBooks(books.filter(b => b._id !== id))
@@ -66,7 +65,10 @@ const FrontPage = () => {
                 <br /><br />
                 <hr />
             </div>
-            {BookList()}
+            <div className="list">
+                {BookList()}
+            </div>
+
         </div>
     )
 }
